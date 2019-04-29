@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>To do list</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <h1>Jason's Great To Do List App</h1>
+    <div class="main-section">
+
+    <div class="container">
+      <section class="projects">
+        <h2>Projects</h2>
+        <div class="input-collection">
+          <input type="text" placeholder="New Project Name" id="new-project-input">
+          <button type="button" id="new-project-btn" class="new-btn">+</button>
+        </div>
+        <ul id="project-list">
+
+        </ul>
+      </section>
+      <section class="todos">
+        <h2>To Dos </h2>
+        <div class="input-collection">
+          <input type="text" id="new-todo-name" placeholder="Todo Name">
+          <input type="date" id="new-todo-date" placeholder="Due Date">
+        <label>Priority: <input type="number" id="new-todo-priority" > </label>
+        <button type="button" id="new-todo-btn" class="new-btn">+</button>
+        </div>
+        <ul id="todo-list">
+
+        </ul>
+      </section>
+
+    </div>
+
+  </div>
+
+    <script src = "main.js">
+
+    </script>
+  </body>
+</html>

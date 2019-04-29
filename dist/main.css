@@ -1,0 +1,129 @@
+/**/
+* {
+  box-sizing: border-box;
+}
+html {
+  background: radial-gradient(
+    circle 75px at 90% 99%, rgba(255,119,0,0.65), rgba(255, 123, 11,0.6) 10%, rgba(160, 176, 255,0.5)  /* #3BD0FF */
+    ),
+    linear-gradient(
+      to top left,
+      lightSkyBlue,
+      deepSkyBlue
+
+      )
+    ;
+    background-repeat:no-repeat;
+    min-height: 100%;
+
+}
+h1, h2 {
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+
+}
+h1 {
+  font-size: 1.9rem;
+  margin-top: 25px;
+}
+h2 {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+div.main-section {
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+}
+div.container {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 50px;
+}
+
+/*Inputs */
+input{
+  height: 25px;
+  border-radius: 3px;
+  font-family: 'Lucida Sans Typewriter', Courier, monospace;
+}
+label {
+  font-family: 'Lucida Sans Typewriter', Courier, monospace;
+  font-size: 0.9rem;
+}
+button.new-btn {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  color: white;
+  background: linear-gradient(
+    to top left,
+    DimGray,
+    #222
+    );
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  border: 2px solid #555;
+  border-bottom: 2px solid DimGray;
+  border-right: 2px solid DimGray;
+  cursor: pointer;
+  justify-self: center;
+}
+button.new-btn:active {
+  border: 2px solid gray;
+  border-bottom: 2px solid gray;
+  border-right: 2px solid gray;
+  background: linear-gradient(
+    to top left,
+    #494949,
+    #292929
+    );
+}
+#new-todo-priority {
+  width: 25px;
+}
+.input-collection {
+  display: grid;
+  align-items: center;
+  grid-auto-flow: column;
+  grid-gap: 10px;
+  justify-content: start;
+}
+input[type="date"] {
+  min-width: 90px;
+}
+
+
+/* Lists */
+ul {
+  margin-top: 12px;
+}
+@media only screen and (max-width: 800px) {
+  div.container {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  section.projects {
+    order: 2;
+  }
+  h1 {
+    font-size: 1.7rem;
+  }
+}
+@media only screen and (max-width: 475px) {
+  .input-collection{
+    grid-auto-flow: row;
+  }
+  h1 {
+    font-size: 5vw;
+  }
+  h2 {
+    font-size: 4vw;
+  }
+}
