@@ -4,18 +4,20 @@
     <meta charset="utf-8">
     <title>To do list</title>
     <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="sliders.css">
     <link rel="stylesheet" href="main.css">
   </head>
   <body>
-    <h1>Jason's Great To Do List App</h1>
+    <div class="typing"><h1>Jason's Great To Do List App</h1></div>
     <div class="main-section">
 
     <div class="container">
       <section class="projects">
         <h2>Projects</h2>
         <div class="input-collection">
-          <input type="text" placeholder="New Project Name" id="new-project-input">
-          <button type="button" id="new-project-btn" class="new-btn">+</button>
+          <input type="text" placeholder="New Project Name" id="new-project-input" maxLength="18">
+          <button type="button" id="new-project-btn" class="new-btn round-btn"
+          >+</button>
         </div>
         <ul id="project-list">
 
@@ -24,10 +26,10 @@
       <section class="todos">
         <h2>To Dos </h2>
         <div class="input-collection">
-          <input type="text" id="new-todo-name" placeholder="Todo Name">
+          <input type="text" id="new-todo-name" placeholder="Todo Name" maxLength="30">
           <input type="date" id="new-todo-date" placeholder="Due Date">
-        <label>Priority: <input type="number" id="new-todo-priority" > </label>
-        <button type="button" id="new-todo-btn" class="new-btn">+</button>
+        <label>Priority: <input type="number" id="new-todo-priority" size="4" min="0" max="10"> </label>
+        <button type="button" id="new-todo-btn" class="new-btn round-btn">+</button>
         </div>
         <ul id="todo-list">
 
