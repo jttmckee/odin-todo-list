@@ -25,17 +25,26 @@ const Item = (__title = 'Item', _dueDate = null, _priority = 0) => {
   }
 
   const setDueDate = _dueDate => {
-    dueDate = _dueDate
+    if (
+      _dueDate &&
+      Object.prototype.toString.call(_dueDate) === '[object Date]' &&
+      !isNaN(_dueDate)
+    ) {
+      console.log(_dueDate)
+      dueDate = _dueDate
+    } else {
+      dueDate = new Date()
+    }
   }
   setDueDate(_dueDate)
   const getPropsForSave = () => {
     return {
-    title: title(),
-    dueDate: getDueDate(),
-    priority: getPriority(),
-    completed: getCompleted()
-  }
+      title: title(),
+      dueDate: getDueDate(),
+      priority: getPriority(),
+      completed: getCompleted()
     }
+  }
   const propsForDisplay = () => {
     return [
       { descr: 'Description', prop: title(), class: 'item-description' },

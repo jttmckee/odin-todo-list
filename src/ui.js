@@ -19,11 +19,12 @@ const UI = (() => {
   }
 
   const newButton = event => {
+    const projectIndex = getActiveList()
     if (event.target.id === 'new-project-btn') {
       const projectName = document.getElementById('new-project-input').value
       Project.create(projectName)
-      Display.displayList(Project.list, 'project-list')
-      Project.save()
+      Display.refresh(projectIndex)
+
     } else if (event.target.id === 'new-todo-btn') {
       const name = document.getElementById('new-todo-name').value
       const date = new Date(document.getElementById('new-todo-date').value)
@@ -31,7 +32,6 @@ const UI = (() => {
         document.getElementById('new-todo-priority').value
       )
       const newTodo = Item(name, date, priority)
-      const projectIndex = getActiveList()
       Project.list[projectIndex].addItem(newTodo)
       Display.refresh(projectIndex)
     }
@@ -43,14 +43,14 @@ const UI = (() => {
   }
 
   const deleteButton = event => {
+    const liProjectIndex = getActiveList()
     if (event.target.classList.contains('del-project-list')) {
       const liIndex = getIndex(event.target)
       Project.removeListAt(liIndex)
-      Display.refresh()
+      Display.refresh(liProjectIndex)
     } else if (event.target.classList.contains('del-todo-list')) {
       // Find the active list
       const liItemIndex = getIndex(event.target)
-      const liProjectIndex = getActiveList()
       Project.list[liProjectIndex].removeItemAt(liItemIndex)
       Display.refresh(liProjectIndex)
     }

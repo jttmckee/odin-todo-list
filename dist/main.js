@@ -290,17 +290,26 @@ const Item = (__title = 'Item', _dueDate = null, _priority = 0) => {
   }
 
   const setDueDate = _dueDate => {
-    dueDate = _dueDate
+    if (
+      _dueDate &&
+      Object.prototype.toString.call(_dueDate) === '[object Date]' &&
+      !isNaN(_dueDate)
+    ) {
+      console.log(_dueDate)
+      dueDate = _dueDate
+    } else {
+      dueDate = new Date()
+    }
   }
   setDueDate(_dueDate)
   const getPropsForSave = () => {
     return {
-    title: title(),
-    dueDate: getDueDate(),
-    priority: getPriority(),
-    completed: getCompleted()
-  }
+      title: title(),
+      dueDate: getDueDate(),
+      priority: getPriority(),
+      completed: getCompleted()
     }
+  }
   const propsForDisplay = () => {
     return [
       { descr: 'Description', prop: title(), class: 'item-description' },
@@ -534,11 +543,12 @@ const UI = (() => {
   }
 
   const newButton = event => {
+    const projectIndex = getActiveList()
     if (event.target.id === 'new-project-btn') {
       const projectName = document.getElementById('new-project-input').value
       _project_js__WEBPACK_IMPORTED_MODULE_0__["default"].create(projectName)
-      _display_js__WEBPACK_IMPORTED_MODULE_2__["default"].displayList(_project_js__WEBPACK_IMPORTED_MODULE_0__["default"].list, 'project-list')
-      _project_js__WEBPACK_IMPORTED_MODULE_0__["default"].save()
+      _display_js__WEBPACK_IMPORTED_MODULE_2__["default"].refresh(projectIndex)
+
     } else if (event.target.id === 'new-todo-btn') {
       const name = document.getElementById('new-todo-name').value
       const date = new Date(document.getElementById('new-todo-date').value)
@@ -546,7 +556,6 @@ const UI = (() => {
         document.getElementById('new-todo-priority').value
       )
       const newTodo = Object(_item_js__WEBPACK_IMPORTED_MODULE_1__["Item"])(name, date, priority)
-      const projectIndex = getActiveList()
       _project_js__WEBPACK_IMPORTED_MODULE_0__["default"].list[projectIndex].addItem(newTodo)
       _display_js__WEBPACK_IMPORTED_MODULE_2__["default"].refresh(projectIndex)
     }
@@ -558,14 +567,14 @@ const UI = (() => {
   }
 
   const deleteButton = event => {
+    const liProjectIndex = getActiveList()
     if (event.target.classList.contains('del-project-list')) {
       const liIndex = getIndex(event.target)
       _project_js__WEBPACK_IMPORTED_MODULE_0__["default"].removeListAt(liIndex)
-      _display_js__WEBPACK_IMPORTED_MODULE_2__["default"].refresh()
+      _display_js__WEBPACK_IMPORTED_MODULE_2__["default"].refresh(liProjectIndex)
     } else if (event.target.classList.contains('del-todo-list')) {
       // Find the active list
       const liItemIndex = getIndex(event.target)
-      const liProjectIndex = getActiveList()
       _project_js__WEBPACK_IMPORTED_MODULE_0__["default"].list[liProjectIndex].removeItemAt(liItemIndex)
       _display_js__WEBPACK_IMPORTED_MODULE_2__["default"].refresh(liProjectIndex)
     }
