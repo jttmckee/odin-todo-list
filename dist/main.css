@@ -1,7 +1,10 @@
-/**/
+/*Key Frames*/
+
+/* border box */
 * {
   box-sizing: border-box;
 }
+/* background */
 html {
   background: radial-gradient(
     circle 75px at 90% 99%, rgba(255,119,0,0.65), rgba(255, 123, 11,0.6) 10%, rgba(160, 176, 255,0.5)  /* #3BD0FF */
@@ -17,16 +20,43 @@ html {
     min-height: 100%;
 
 }
+/* Key frames for animating typewriter */
+@keyframes typing {
+  from {width: 0}
+  to {width: 100%}
+}
+@keyframes blinking-cursor {
+  from, to {border-color: transparent}
+  50% {border-color: black}
+}
+.typing {
+  display: grid;
+  justify-content: center;
+
+}
+
 h1, h2 {
   text-align: center;
   font-weight: bold;
   font-family: 'Courier New', Courier, monospace;
 
+
 }
 h1 {
   font-size: 1.9rem;
+
+  margin: 0 auto;
   margin-top: 25px;
+
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: solid 3px transparent;
+  animation: typing 2s steps(28, end),
+            blinking-cursor .5s step-end 10;
+
+
 }
+
 h2 {
   font-size: 1.5rem;
   margin-top: 10px;
@@ -50,13 +80,14 @@ input{
   border-radius: 3px;
   font-family: 'Lucida Sans Typewriter', Courier, monospace;
 }
+
 label {
   font-family: 'Lucida Sans Typewriter', Courier, monospace;
   font-size: 0.9rem;
 }
-button.new-btn {
-  height: 30px;
-  width: 30px;
+button.round-btn {
+  height: 20px;
+  width: 20px;
   border-radius: 50%;
   color: white;
   background: linear-gradient(
@@ -64,7 +95,7 @@ button.new-btn {
     DimGray,
     #222
     );
-  font-size: 1.2rem;
+  font-size: 0.8rem;
   font-weight: bold;
   font-family: 'Courier New', Courier, monospace;
   border: 2px solid #555;
@@ -72,19 +103,33 @@ button.new-btn {
   border-right: 2px solid DimGray;
   cursor: pointer;
   justify-self: center;
+  padding:0.08rem;
+  padding-left: 0.11rem;
+  transition: all 125ms cubic-bezier(0, 1.47, 0, 2.2) ;
+
 }
-button.new-btn:active {
-  border: 2px solid gray;
+button.round-btn:active {
+  /* border: 2px solid gray;
   border-bottom: 2px solid gray;
-  border-right: 2px solid gray;
+  border-right: 2px solid gray; */
   background: linear-gradient(
     to top left,
     #494949,
     #292929
     );
+  transform: translateY(3px) rotateX(15deg);
 }
-#new-todo-priority {
+button.round-btn.new-btn{
+  height: 25px;
   width: 25px;
+  font-size: 1.05rem;
+
+}
+#new-todo-name {
+  width:150px
+}
+input[type="number"] {
+  width: 30px;
 }
 .input-collection {
   display: grid;
@@ -96,12 +141,83 @@ button.new-btn:active {
 input[type="date"] {
   min-width: 90px;
 }
+#input-wrapper {
+  display:grid;
+  grid-template-columns: auto auto auto;
+  align-items: center;
+  grid-gap: 3px;
+
+}
+
 
 
 /* Lists */
 ul {
   margin-top: 12px;
 }
+
+/* List items */
+li {
+  font-family: 'Lucida Sans Typewriter', Courier, monospace;
+  font-size: 0.9rem;
+}
+.project-number-items {
+  background-color: rgba(255,0,0,0.5);
+  border-radius: 50%;
+  text-align: center;
+  width: 15px;
+  height: 15px;
+  display: grid;
+  align-items: center;
+  font-size: 0.7rem;
+  position: relative;
+  top: -5px;
+  right: -5px;
+  opacity: 0.9;
+}
+#project-list li {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  grid-gap: 3px;
+  align-items: center;
+  margin-top: 7px;
+}
+.select-btn {
+  height: 1.3rem;
+  width: 100%;
+  font-family: 'Lucida Sans Typewriter', Courier, monospace;
+  border: 2px outset Gray;
+  border-radius: 0.25rem;
+  transition: all 100ms ease-in-out ;
+
+}
+.active-btn {
+  border: 3px inset #555;
+  background-color: lightGray;
+
+
+}
+#todo-list li {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto auto auto;
+  align-items: center;
+  grid-gap: 5px;
+}
+.item-priority {
+  border: 2px solid red;
+  border-radius: 50%;
+  text-align: center;
+  width: 25px;
+  height: 25px;
+  display: grid;
+  align-items: center;
+}
+/*Checkbox */
+input[type=checkbox] {
+  width: 1.8em;
+  height: 1.8em;
+}
+
 @media only screen and (max-width: 800px) {
   div.container {
 
@@ -116,6 +232,7 @@ ul {
     font-size: 1.7rem;
   }
 }
+
 @media only screen and (max-width: 475px) {
   .input-collection{
     grid-auto-flow: row;
